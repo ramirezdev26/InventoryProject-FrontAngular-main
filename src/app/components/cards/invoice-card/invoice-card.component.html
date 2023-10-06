@@ -1,0 +1,31 @@
+<div [ngStyle]="{display: 'flex', flexDirection: 'column', margin: '20px'}">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{invoice.invoiceType}}</mat-card-title>
+          <mat-card-subtitle>Date: {{invoice.date | date:'short'}}</mat-card-subtitle>
+          <mat-card-subtitle>Level: {{invoice.invoiceType}}</mat-card-subtitle>
+          <mat-card-subtitle>Total: {{invoice.total}}</mat-card-subtitle>
+          <mat-card-subtitle> Products sold:{{ invoice.products.length }}
+            <mat-expansion-panel hideToggle>
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  List of products
+                </mat-panel-title>
+                <mat-panel-description>
+                  Press to display the list of products sold
+                  <mat-icon>account_circle</mat-icon>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <div [ngStyle]="{display: 'flex', flexDirection:'column'}" *ngFor="let product of invoice.products">
+                <mat-card [ngStyle]="{margin: '10px'}">
+                  <mat-card-header>
+                    <mat-card-title>{{product.name}}</mat-card-title>
+                    <mat-card-subtitle>Quantity: {{product.quantity}}</mat-card-subtitle>
+                </mat-card-header>
+                </mat-card>
+              </div>
+            </mat-expansion-panel>
+          </mat-card-subtitle>
+        </mat-card-header>
+    </mat-card>
+  </div>

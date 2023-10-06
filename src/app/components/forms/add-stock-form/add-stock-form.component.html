@@ -1,0 +1,16 @@
+<div class="add-stock-form">
+    <div class="form-row">
+        <mat-form-field class="product-select">
+            <mat-label>Producto</mat-label>
+            <mat-select [(ngModel)]="selectedProduct">
+                <mat-option *ngFor="let product of products" [value]="product">{{ product.name }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="quantity-input">
+            <input matInput type="number" [(ngModel)]="quantityToAdd" placeholder="Cantidad a añadir">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="addStock()">Añadir Stock</button>
+    </div>
+</div>

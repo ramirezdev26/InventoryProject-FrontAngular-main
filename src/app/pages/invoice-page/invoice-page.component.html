@@ -1,0 +1,16 @@
+<div *ngIf="total > 0" [ngStyle]="{display: 'flex', flexDirection: 'column'}">
+  <app-invoice-card *ngFor="let i_invoice of l_invoice | paginate: { itemsPerPage: count, currentPage: p }" [invoice]="i_invoice ">
+  </app-invoice-card>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+  </div>
+  <ng-container *ngIf="total > 0; else noCoursesFound">
+      <br/>
+      <div>
+        <h4 class="result_text">Founded: {{ total }}</h4>
+      </div>
+    </ng-container>
+    <ng-template #noCoursesFound>
+      <div>
+        <h4 class="result_text">There is no invoices</h4>
+      </div>
+  </ng-template>

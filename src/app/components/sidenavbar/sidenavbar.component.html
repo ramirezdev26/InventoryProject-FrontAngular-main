@@ -1,0 +1,33 @@
+<mat-toolbar color = "primary">
+    <mat-toolbar-row>
+        <button mat-icon-button (click)="sidenav.toggle();">
+            <mat-icon >menu</mat-icon>
+        </button> Inventory
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <mat-sidenav-container>
+    <mat-sidenav  #sidenav opened mode="side" [ngStyle]=" {margin: '0 10px 0 10px'}">
+        <mat-nav-list>
+            <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon>  Branches</a>
+        </mat-nav-list>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header><a mat-list-item routerLink="/products"> <mat-icon>people</mat-icon>  Products</a></mat-expansion-panel-header>
+            <mat-nav-list>
+            <a mat-list-item (click)="goToProductForm()"> <mat-icon>person_add</mat-icon> New product</a>
+            <a mat-list-item (click)="goToAddStockForm()"> <mat-icon>person_add</mat-icon> Add Stock</a>
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel>
+            <mat-expansion-panel-header ><a mat-list-item routerLink="/invoices"> <mat-icon>library_books</mat-icon> Invoices</a></mat-expansion-panel-header>
+            <mat-nav-list>
+            <a mat-list-item (click)="goToInvoiceForm()"> <mat-icon>library_add</mat-icon> New sale</a>
+            </mat-nav-list>
+        </mat-expansion-panel>
+
+    </mat-sidenav>
+    <mat-sidenav-content >
+        <div [ngStyle]="{'margin-left': '30px', height: '88vh'}">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

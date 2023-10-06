@@ -1,0 +1,15 @@
+<div [ngStyle]="{display: 'flex', flexDirection: 'column', margin: '20px'}">
+    <mat-card>
+        <mat-card-header>
+          <mat-card-title>{{branch.id}}</mat-card-title>
+          <mat-card-subtitle>Name: {{branch.name}}</mat-card-subtitle>
+          <mat-card-subtitle>Country: {{branch.country}}</mat-card-subtitle>
+          <mat-card-subtitle>City: {{branch.city}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-actions>
+          <div [ngStyle]="{display: 'grid', 'grid-template-columns': 'repeat(auto-fit, 100px)', gap: '10px', margin: '10px'}">
+            <button mat-button mat-raised-button color="primary" (click)="updateBranchId()">Select</button>
+          </div>
+        </mat-card-actions>
+    </mat-card>
+  </div>

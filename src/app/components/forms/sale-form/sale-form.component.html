@@ -1,0 +1,48 @@
+<div class="sale-form">
+    <div class="form-row">
+      <mat-form-field class="product-select">
+        <mat-label>Product</mat-label>
+        <mat-select [(ngModel)]="selectedProduct">
+          <mat-option *ngFor="let product of products" [value]="product">{{ product.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field class="quantity-input">
+        <input matInput type="number" [(ngModel)]="selectedQuantity" placeholder="Cantidad">
+      </mat-form-field>
+      
+      <button mat-raised-button (click)="addToCart()" [disabled]="!selectedProduct.id">Add to cart</button>
+    </div>
+    
+    <div class="cart-table">
+      <table mat-table [dataSource]="cart">
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef>Product</th>
+          <td mat-cell *matCellDef="let item">{{ item.name }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="quantity">
+          <th mat-header-cell *matHeaderCellDef>Quantity</th>
+          <td mat-cell *matCellDef="let item">{{ item.quantity }}</td>
+        </ng-container>
+        
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
+          <td mat-cell *matCellDef="let item">
+            <button mat-icon-button color="warn" (click)="removeFromCart(item)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="cartColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: cartColumns;"></tr>
+      </table>
+      
+      <div class="cart-summary">
+        <span>Total of products to sell: {{ cart.length }}</span>
+        <button mat-raised-button color="primary" (click)="registerFinalCustomerSale()">Final Customer Sale</button>
+        <button mat-raised-button color="primary" (click)="registerResellerSale()">Reseller Sale</button>
+    </div>
+    </div>
+  </div>

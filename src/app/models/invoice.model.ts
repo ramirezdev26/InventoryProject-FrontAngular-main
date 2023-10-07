@@ -1,4 +1,4 @@
-import { Product, socketProductSold } from "./product.model"
+import { Product, SocketProductSold } from "./product.model"
 
 export interface Invoice {
     id: string,
@@ -11,7 +11,7 @@ export interface Invoice {
 
 export interface InvoiceEvent {
     id: string,
-    products: socketProductSold[],
+    products: SocketProductSold[],
     total: number,
     date: Date,
     type: string,

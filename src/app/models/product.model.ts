@@ -8,9 +8,18 @@ export interface Product{
     branchId: string,
     type?: string,
     quantity?: number
-} 
+}
 
-export interface socketProductSold {
+export interface SocketProductAdded {
+    productId: string,
+    name: string,
+    category: string,
+    description: string,
+    price: number,
+    branchId: string
+}
+
+export interface SocketProductSold {
     id: string,
     name: string,
     description: string,

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
-import { Invoice, InvoiceEvent } from 'src/app/models/invoice.model';
+import { Product, SocketProductAdded } from 'src/app/models/product.model';
+import { InvoiceEvent } from 'src/app/models/invoice.model';
 import { ProductStockAdded } from 'src/app/models/product.model';
 import { SocketService } from 'src/app/services/socket.service';
 import { WebSocketSubject } from 'rxjs/webSocket';
@@ -59,12 +59,12 @@ export class ProductPageComponent {
   }
 
 
-  addProduct(event:Product){
+  addProduct(event:SocketProductAdded){
     var newProduct: Product = {
-      id: event.id,
+      id: event.productId,
       name: event.name,
       description: event.description,
-      inventoryStock: event.inventoryStock,
+      inventoryStock: 0,
       price: event.price,
       category: event.category,
       branchId: event.branchId,

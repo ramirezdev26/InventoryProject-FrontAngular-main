@@ -9,7 +9,7 @@ export class AuthService {
 
   private tokenSubject = new BehaviorSubject<string | null>(null);
   token$ = this.tokenSubject.asObservable();
-  authApi: string = `http://localhost:8083`;
+  authApi: string = `http://${window._env.AUTH_URI}`;
   constructor(private http: HttpClient) {}
 
 

@@ -9,7 +9,8 @@ import { User } from 'src/app/models/user.model';
 interface WindowEnv {
   SERVICE_URI: string,
   QUERY_URI: string,
-  SOCKET_URI: string
+  SOCKET_URI: string,
+  AUTH_URI: string
 }
 
 declare global {
@@ -25,8 +26,8 @@ declare global {
 export class InventoryService {
   type: string = 'save';
   errorMsg: string = '';
-  api: string = `http://localhost:8081`;
-  commandApi: string = `http://localhost:8080`;
+  api: string = `http://${window._env.QUERY_URI}`;
+  commandApi: string = `http://${window._env.SERVICE_URI}`;
   emptyBody = {};
   token: any = localStorage.getItem('token');
   currentBranchId: string | null = '';

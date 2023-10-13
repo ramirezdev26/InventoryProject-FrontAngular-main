@@ -1,0 +1,17 @@
+<div *ngIf="total > 0" [ngStyle]="{display: 'flex', flexDirection: 'column'}">
+    <app-user-card *ngFor="let i_user of l_users | paginate: { itemsPerPage: count, currentPage: p } " [user]="i_user">
+    </app-user-card>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    <ng-container *ngIf="total > 0; else noStudentsFound">
+        <br/>
+        <div>
+          <h4 class="result_text">Founded: {{ total }}</h4>
+        </div>
+      </ng-container>
+      <ng-template #noStudentsFound>
+        <div>
+          <h4 class="result_text">There is no products, start adding one</h4>
+        </div>
+    </ng-template>
+    

@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { AuthService } from '../auth-service/auth.service';
+import { JwtHelperService } from '@auth0/angular-jwt';
+import { User } from 'src/app/models/user.model';
 
 interface WindowEnv {
   SERVICE_URI: string,
@@ -21,26 +23,42 @@ declare global {
   providedIn: 'root',
 })
 export class InventoryService {
-  constructor(private http: HttpClient, private router: Router) {}
-
   type: string = 'save';
   errorMsg: string = '';
-  api: string = `http://${window._env.QUERY_URI}`;
-  commandApi: string = `http://${window._env.SERVICE_URI}`;
+  api: string = `http://localhost:8081`;
+  commandApi: string = `http://localhost:8080`;
   emptyBody = {};
-  currentBranchId: string = '';
+  token: any = localStorage.getItem('token');
+  currentBranchId: string | null = '';
+  currentRolUser: string | null = '';
+  
+  
+  constructor(private http: HttpClient, private authService: AuthService, private authDecod: JwtHelperService) {
+    
+  }
+
+  
 
 
-  getCurrentBranchId(): string{
+  getCurrentBranchId(): any{
     return this.currentBranchId;
+  }
+  getCurrentRol(): any{
+    return this.currentRolUser;
   }
 
   setCurrentBranchId(branchId: string): void{
     this.currentBranchId = branchId;
   }
+  setCurrentRol(rol: string | null):void{
+    this.currentRolUser = rol;
+  }
   
   getProductsByBranch(input: string): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.api}/products/${input}`);
+  }
+  getUsersByBranch(input:string): Observable<User[]>{
+    return this.http.get<User[]>(`${this.api}/users/${input}`)
   }
 
   getAllBranches(): Observable<any> {
@@ -51,8 +69,16 @@ export class InventoryService {
     return this.http.get(`${this.api}/invoices/${input}`)
   }
 
+  postNewBranch(branch: any){
+    return this.http.post(`${this.commandApi}/branches`, branch)
+  }
+
   postNewProduct(product: Product){
     return this.http.post(`${this.commandApi}/product`, product);
+  }
+
+  postNewUser(user: User){
+    return this.http.post(`${this.commandApi}/user`, user)
   }
 
   patchFinalCustomerSale(saleInfo: any){

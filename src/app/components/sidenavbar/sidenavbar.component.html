@@ -7,20 +7,35 @@
   </mat-toolbar>
   <mat-sidenav-container>
     <mat-sidenav  #sidenav opened mode="side" [ngStyle]=" {margin: '0 10px 0 10px'}">
-        <mat-nav-list>
-            <a mat-list-item routerLink="/home"><mat-icon>home</mat-icon>  Branches</a>
-        </mat-nav-list>
-        <mat-expansion-panel>
-            <mat-expansion-panel-header><a mat-list-item routerLink="/products"> <mat-icon>people</mat-icon>  Products</a></mat-expansion-panel-header>
+        <mat-expansion-panel *ngIf="currentUserRole === 'SUPER'">
+            <mat-expansion-panel-header ><a mat-list-item routerLink="/branches"> <mat-icon>home</mat-icon> Branches</a></mat-expansion-panel-header>
             <mat-nav-list>
+            <a mat-list-item (click)="goToBranchForm()"> <mat-icon>home_add</mat-icon> New branch</a>
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="currentUserRole === 'SUPER' || currentUserRole === 'ADMIN'">
+            <mat-expansion-panel-header><a mat-list-item routerLink="/products"> <mat-icon>people</mat-icon>  Products</a></mat-expansion-panel-header>
+            <mat-nav-list >
             <a mat-list-item (click)="goToProductForm()"> <mat-icon>person_add</mat-icon> New product</a>
             <a mat-list-item (click)="goToAddStockForm()"> <mat-icon>person_add</mat-icon> Add Stock</a>
             </mat-nav-list>
         </mat-expansion-panel>
-        <mat-expansion-panel>
+        <mat-nav-list *ngIf="currentUserRole === 'SELLER'">
+            <a mat-list-item routerLink="/products"><mat-icon>people</mat-icon>  Products</a>
+        </mat-nav-list>
+        <mat-expansion-panel *ngIf="currentUserRole === 'SUPER' || currentUserRole === 'ADMIN'">
             <mat-expansion-panel-header ><a mat-list-item routerLink="/invoices"> <mat-icon>library_books</mat-icon> Invoices</a></mat-expansion-panel-header>
             <mat-nav-list>
             <a mat-list-item (click)="goToInvoiceForm()"> <mat-icon>library_add</mat-icon> New sale</a>
+            </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-nav-list *ngIf="currentUserRole === 'SELLER'">
+            <a mat-list-item (click)="goToInvoiceForm()"> <mat-icon>library_add</mat-icon> New sale</a>
+        </mat-nav-list>
+        <mat-expansion-panel *ngIf="currentUserRole === 'SUPER' || currentUserRole === 'ADMIN'">
+            <mat-expansion-panel-header ><a mat-list-item routerLink="/users"> <mat-icon>people</mat-icon> Users</a></mat-expansion-panel-header>
+            <mat-nav-list>
+            <a mat-list-item (click)="goToUserForm()"> <mat-icon>person_add</mat-icon> New user</a>
             </mat-nav-list>
         </mat-expansion-panel>
 

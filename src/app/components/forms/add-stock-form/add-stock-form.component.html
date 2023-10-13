@@ -12,5 +12,17 @@
         </mat-form-field>
 
         <button mat-raised-button color="primary" (click)="addStock()">Añadir Stock</button>
+        <div class="modal-body">
+
+            <input type="file" (change)="readInventoryExcel($event)" />
+    
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="sendExcel()"
+              data-bs-dismiss="modal"
+            >Upload</button>
+    
+          </div>
     </div>
 </div>

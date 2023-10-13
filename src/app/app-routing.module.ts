@@ -7,26 +7,58 @@ import { PagenotfoundComponent } from './components/page-not-found/pagenotfound/
 import { ProductFormComponent } from './components/forms/product-form/product-form.component';
 import { SaleFormComponent } from './components/forms/sale-form/sale-form.component';
 import { AddStockFormComponent } from './components/forms/add-stock-form/add-stock-form.component';
+import { LoginComponent } from './components/login/login.component';
+import { LayoutComponent } from './pages/layout/layout.component';
+import { AuthGuardGuard } from './guards/auth-guard.guard';
+import { UserPageComponent } from './pages/user-page/user-page.component';
+import { UserNewFromComponent } from './components/forms/user-new-from/user-new-from.component';
+import { AddBranchFormComponent } from './components/forms/add-branch-form/add-branch-form.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'login'
+
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
 
   },
   {
     path: 'home',
+    component: LayoutComponent,
+    canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'branches',
     component: WelcomePageComponent,
-
+    canActivate:[AuthGuardGuard]
   },
   {
     path: 'products',
-    component: ProductPageComponent
+    component: ProductPageComponent,
+    canActivate:[AuthGuardGuard]
   },
   {
     path: 'invoices',
-    component: InvoicePageComponent
+    component: InvoicePageComponent,
+    canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'users',
+    component: UserPageComponent,
+    canActivate:[AuthGuardGuard]
+  },
+  {
+    path: 'branches',
+
+    children: [
+      {
+        path: 'new',
+        component: AddBranchFormComponent}
+    ]
   },
   {
     path: 'products',
@@ -47,6 +79,15 @@ const routes: Routes = [
       {
         path: 'new',
         component: SaleFormComponent}
+    ]
+  },
+  {
+    path: 'users',
+
+    children: [
+      {
+        path: 'new',
+        component: UserNewFromComponent}
     ]
   },
   {

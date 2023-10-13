@@ -1,6 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Branch } from 'src/app/models/branch.model';
-import { Router } from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
 import { Product } from 'src/app/models/product.model';
 
@@ -11,7 +9,7 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductCardComponent {
 
-  constructor(private router: Router, private service: InventoryService) { }
+  constructor() { }
 
   @Input() product: Product = {
     id: '',

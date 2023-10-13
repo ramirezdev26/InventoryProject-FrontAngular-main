@@ -9,7 +9,12 @@ import { InventoryService } from 'src/app/services/inventory-service/inventory.s
 })
 export class SidenavbarComponent {
 
-  constructor(private courseService: InventoryService, private router: Router){}
+  currentUserRole: string = '';
+
+  constructor(private inventoryService: InventoryService, private router: Router){
+    this.currentUserRole = this.inventoryService.getCurrentRol();
+    console.log(this.currentUserRole)
+  }
 
 
   goToProductForm(){
@@ -23,6 +28,15 @@ export class SidenavbarComponent {
   goToInvoiceForm(){
     this.router.navigate(['invoices/new'])
   }
+
+  goToUserForm(){
+    this.router.navigate(['users/new'])
+  }
+
+  goToBranchForm(){
+    this.router.navigate(['branches/new'])
+  }
+
 
 
 }

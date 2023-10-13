@@ -3,22 +3,26 @@
         <mat-form-field appearance="fill" >
             <mat-label>Name: </mat-label>  <input matInput placeholder="Insert name" formControlName="name" required/>
             <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
+        </mat-form-field>
         <mat-form-field appearance="fill" >
-            <mat-label>Description: </mat-label> <input matInput placeholder="Insert description" formControlName="description" required/>
+            <mat-label>LastName: </mat-label> <input matInput placeholder="Insert lastname" formControlName="last_name" required/>
             <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
+        </mat-form-field>
         <mat-form-field appearance="fill" >
-            <mat-label>Price: </mat-label> <input matInput type="number" placeholder="Insert price" formControlName="price" required/>
+            <mat-label>Email: </mat-label> <input matInput placeholder="Insert email" formControlName="email" required/>
             <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
+        </mat-form-field>
         <mat-form-field appearance="fill" >
-            <mat-label>Category: </mat-label> <input matInput placeholder="Insert category" formControlName="category" required/>
+            <mat-label>Password: </mat-label> <input matInput placeholder="Insert password" formControlName="password" required/>
             <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
-          </mat-form-field>
-          <div [ngStyle]="{display: 'grid', margin: '5px', 'grid-template-columns': 'repeat(auto-fit, 150px)', gap: '5px'}">
+        </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label>Role: </mat-label> <input matInput placeholder="Insert role" formControlName="role" required/>
+            <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div [ngStyle]="{display: 'grid', margin: '5px', 'grid-template-columns': 'repeat(auto-fit, 150px)', gap: '5px'}">
           <button mat-raised-button color="primary" [disabled]="productForm.invalid" (click)="onSubmit()">Save</button>
           <button mat-raised-button color="warn" routerLink="/home">Go Back</button>
         </div>
     </form>
-  </div>
+</div>

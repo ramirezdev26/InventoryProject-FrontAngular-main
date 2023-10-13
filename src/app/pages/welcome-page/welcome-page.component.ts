@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Branch } from 'src/app/models/branch.model';
-import { Student } from 'src/app/models/student.model';
 import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
 import { SocketService } from 'src/app/services/socket.service';
 import { WebSocketSubject } from 'rxjs/webSocket';

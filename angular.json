@@ -72,6 +72,9 @@
               "browserTarget": "C1-2023-FA-Angular:build:development"
             }
           },
+          "options": {
+            "ssl": false
+          },
           "defaultConfiguration": "development"
         },
         "extract-i18n": {

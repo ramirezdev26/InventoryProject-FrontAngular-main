@@ -4,6 +4,19 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
 
+interface WindowEnv {
+  SERVICE_URI: string,
+  QUERY_URI: string,
+  SOCKET_URI: string
+}
+
+declare global {
+  interface Window {
+    _env: WindowEnv;
+  }
+}
+
+
 @Injectable({
   providedIn: 'root',
 })
@@ -12,8 +25,8 @@ export class InventoryService {
 
   type: string = 'save';
   errorMsg: string = '';
-  api: string = 'http://localhost:8081';
-  commandApi: string = 'http://localhost:8080';
+  api: string = `http://${window._env.QUERY_URI}`;
+  commandApi: string = `http://${window._env.SERVICE_URI}`;
   emptyBody = {};
   currentBranchId: string = '';
 

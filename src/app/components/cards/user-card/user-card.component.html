@@ -8,5 +8,15 @@
           <mat-card-subtitle>Rol: {{user.role}}</mat-card-subtitle>
           <mat-card-subtitle>BranchId: {{user.branchId}}</mat-card-subtitle>
         </mat-card-header>
+
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="toggleRoleChange()">{{!isChangingRole ? 'Change Role' : 'Cancel'}}</button>
+          <mat-select *ngIf="isChangingRole" [(ngModel)]="selectedRole">
+              <mat-option value="ADMIN">Admin</mat-option>
+              <mat-option value="SELLER">Seller</mat-option>
+          </mat-select>
+          <button mat-button *ngIf="isChangingRole" (click)="sendRoleChange()">Send</button>
+      </mat-card-actions>
+
     </mat-card>
   </div>

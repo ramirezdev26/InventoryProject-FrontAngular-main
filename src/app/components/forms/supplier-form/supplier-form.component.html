@@ -1,0 +1,24 @@
+<div [ngStyle]="{display: 'grid', 'grid-template-columns': 'repeat(auto-fit, 150px)'}">
+    <form [formGroup] = "supplierForm" ngClass="save">
+        <mat-form-field appearance="fill" >
+            <mat-label>Name: </mat-label>  <input matInput placeholder="Insert name" formControlName="name" required/>
+            <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label>ContactNumber: </mat-label> <input matInput type="number" placeholder="Insert number" formControlName="number" required/>
+            <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label>Email: </mat-label> <input matInput placeholder="Insert email" formControlName="email" required/>
+            <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="fill" >
+            <mat-label>Payment Term: </mat-label> <input matInput placeholder="Insert payment_term" formControlName="payment_term" required/>
+            <mat-error *ngIf="input.invalid" >{{getErrorMessage()}}</mat-error>
+        </mat-form-field>
+        <div [ngStyle]="{display: 'grid', margin: '5px', 'grid-template-columns': 'repeat(auto-fit, 150px)', gap: '5px'}">
+          <button mat-raised-button color="primary" [disabled]="supplierForm.invalid" (click)="onSubmit()">Save</button>
+          <button mat-raised-button color="warn" routerLink="/home">Go Back</button>
+        </div>
+    </form>
+</div>

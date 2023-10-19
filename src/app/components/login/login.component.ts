@@ -43,8 +43,12 @@ export class LoginComponent {
       this.authService.login(userDetails)
       .subscribe((tocken: any) => {
         localStorage.setItem('token', tocken.token);
+        
         this.inventoryService.setCurrentRol(this.authDecod.decodeToken(tocken.token).roles) 
-        this.inventoryService.setCurrentBranchId(this.authDecod.decodeToken(tocken.token).branchId) 
+        this.inventoryService.setCurrentBranchId(this.authDecod.decodeToken(tocken.token).branchId)
+        this.authService.setToken(tocken.token);
+        
+        
         this.router.navigate(['/home']);
       });
     }

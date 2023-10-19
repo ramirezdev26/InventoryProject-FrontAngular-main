@@ -21,6 +21,7 @@ export class BranchCardComponent {
   }
 
   updateBranchId(){
+    localStorage.setItem("branchid", this.branch.id);
     this.service.setCurrentBranchId(this.branch.id);
   }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-sidenavbar',
@@ -11,7 +12,10 @@ export class SidenavbarComponent {
 
   currentUserRole: string = '';
 
-  constructor(private inventoryService: InventoryService, private router: Router){
+  constructor(private inventoryService: InventoryService, private router: Router, private authService: AuthService){
+    this.authService.token$.subscribe((newtoken) => {
+      this.currentUserRole = this.inventoryService.getCurrentRol();
+    });
     this.currentUserRole = this.inventoryService.getCurrentRol();
     console.log(this.currentUserRole)
   }
@@ -37,6 +41,13 @@ export class SidenavbarComponent {
     this.router.navigate(['branches/new'])
   }
 
+  goToSupplierForm(){
+    this.router.navigate(['suppliers/new'])
+  }
+
+  logOut(){
+    this.authService.closeSession();
+  }
 
 
 }

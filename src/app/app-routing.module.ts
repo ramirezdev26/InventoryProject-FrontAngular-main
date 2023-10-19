@@ -13,6 +13,8 @@ import { AuthGuardGuard } from './guards/auth-guard.guard';
 import { UserPageComponent } from './pages/user-page/user-page.component';
 import { UserNewFromComponent } from './components/forms/user-new-from/user-new-from.component';
 import { AddBranchFormComponent } from './components/forms/add-branch-form/add-branch-form.component';
+import { SupplierPageComponent } from './pages/supplier-page/supplier-page.component';
+import { SupplierFormComponent } from './components/forms/supplier-form/supplier-form.component';
 
 const routes: Routes = [
   {
@@ -52,6 +54,11 @@ const routes: Routes = [
     canActivate:[AuthGuardGuard]
   },
   {
+    path: 'suppliers',
+    component: SupplierPageComponent,
+    canActivate:[AuthGuardGuard]
+  },
+  {
     path: 'branches',
 
     children: [
@@ -88,6 +95,15 @@ const routes: Routes = [
       {
         path: 'new',
         component: UserNewFromComponent}
+    ]
+  },
+  {
+    path: 'suppliers',
+
+    children: [
+      {
+        path: 'new',
+        component: SupplierFormComponent}
     ]
   },
   {

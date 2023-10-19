@@ -39,6 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
           case 401:
             if (localStorage.getItem('token')) {
               if (this.jwtAuth.isTokenExpired(localStorage.getItem('token'))) {
+                localStorage.clear();
                 this.router.navigate(['/login']);
               }
             } else {

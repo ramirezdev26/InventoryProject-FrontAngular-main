@@ -34,6 +34,9 @@ import { UserCardComponent } from './components/cards/user-card/user-card.compon
 import { AddBranchFormComponent } from './components/forms/add-branch-form/add-branch-form.component';
 import { UserNewFromComponent } from './components/forms/user-new-from/user-new-from.component';
 import { UserPageComponent } from './pages/user-page/user-page.component';
+import { SupplierFormComponent } from './components/forms/supplier-form/supplier-form.component';
+import { SupplierCardComponent } from './components/cards/supplier-card/supplier-card.component';
+import { SupplierPageComponent } from './pages/supplier-page/supplier-page.component';
 
 
 
@@ -58,7 +61,10 @@ import { UserPageComponent } from './pages/user-page/user-page.component';
     UserCardComponent,
     AddBranchFormComponent,
     UserNewFromComponent,
-    UserPageComponent
+    UserPageComponent,
+    SupplierFormComponent,
+    SupplierCardComponent,
+    SupplierPageComponent
   ],
   imports: [
     BrowserModule,

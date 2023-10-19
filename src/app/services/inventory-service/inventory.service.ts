@@ -5,6 +5,7 @@ import { Product } from 'src/app/models/product.model';
 import { AuthService } from '../auth-service/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from 'src/app/models/user.model';
+import { Supplier } from 'src/app/models/supplier.model';
 
 interface WindowEnv {
   SERVICE_URI: string,
@@ -29,13 +30,16 @@ export class InventoryService {
   api: string = `http://${window._env.QUERY_URI}`;
   commandApi: string = `http://${window._env.SERVICE_URI}`;
   emptyBody = {};
-  token: any = localStorage.getItem('token');
-  currentBranchId: string | null = '';
-  currentRolUser: string | null = '';
+  token: any = this.authService.getToken();
+  currentBranchId: string | null = this.authService.getCurrentBranchId();
+  currentRolUser: string | null = this.authService.getCurrentRolUser();
   
   
   constructor(private http: HttpClient, private authService: AuthService, private authDecod: JwtHelperService) {
-    
+    const branchId = localStorage.getItem("branchid");
+    if (branchId) {
+      this.currentBranchId = branchId;
+    }
   }
 
   
@@ -61,6 +65,9 @@ export class InventoryService {
   getUsersByBranch(input:string): Observable<User[]>{
     return this.http.get<User[]>(`${this.api}/users/${input}`)
   }
+  getSuppliersByBranch(input: string){
+    return this.http.get<Supplier[]>(`${this.api}/suppliers/${input}`)
+  }
 
   getAllBranches(): Observable<any> {
     return this.http.get(`${this.api}/branches`);
@@ -82,6 +89,11 @@ export class InventoryService {
     return this.http.post(`${this.commandApi}/user`, user)
   }
 
+  postNewSupplier(supplier: Supplier){
+    console.log(supplier);
+    return this.http.post(`${this.commandApi}/supplier`, supplier)
+  }
+
   patchFinalCustomerSale(saleInfo: any){
     return this.http.patch(`${this.commandApi}/product/customer-sale`, saleInfo)
   }
@@ -92,5 +104,9 @@ export class InventoryService {
 
   patchAddStockToProduct(addStockInfo: any){
     return this.http.patch(`${this.commandApi}/product/purchase`, addStockInfo)
+  }
+
+  patchChangeUserRole(userInfo: any){
+    return this.http.patch(`${this.commandApi}/user/role`, userInfo)
   }
 }

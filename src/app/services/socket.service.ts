@@ -10,7 +10,7 @@ import { InvoiceEvent } from '../models/invoice.model';
 export class SocketService {
 
   //api_socket: string = `${window._env.SOCKET_URI}`;
-  api_socket: string = `localhost:8083`;
+  api_socket: string = `localhost:8082`;
 
 
   constructor() { }

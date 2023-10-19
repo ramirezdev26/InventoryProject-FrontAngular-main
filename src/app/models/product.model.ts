@@ -32,7 +32,10 @@ export interface SocketProductSold {
 }
 
 export interface ProductStockAdded {
-    productId: string,
+    products: [{
+        productId: string,
+        quantity: number
+    }],
     quantityToAdd: number
 }
 

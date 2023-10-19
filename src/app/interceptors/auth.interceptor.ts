@@ -36,7 +36,7 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(modReq).pipe(
       catchError((error: HttpErrorResponse) => {
         switch (error.status) {
-          case 401:
+          case 400:
             if (localStorage.getItem('token')) {
               if (this.jwtAuth.isTokenExpired(localStorage.getItem('token'))) {
                 localStorage.clear();

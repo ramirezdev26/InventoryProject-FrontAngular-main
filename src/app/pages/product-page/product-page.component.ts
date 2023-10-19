@@ -73,10 +73,13 @@ export class ProductPageComponent {
   }
 
   stockAddedView(message:ProductStockAdded) {
+    console.log(message);
     this.l_products?.forEach((product) => {
-      if (product.id === message.productId) {
-        product.inventoryStock += message.quantityToAdd;
-      }
+      message.products.forEach(productSold => {
+        if (product.id === productSold.productId) {
+          product.inventoryStock += productSold.quantity;
+        }
+      });
     });
   }
 

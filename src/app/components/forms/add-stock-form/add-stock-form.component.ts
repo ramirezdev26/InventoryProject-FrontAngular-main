@@ -76,13 +76,15 @@ export class AddStockFormComponent {
   addStock() {
     if (this.selectedProduct && this.quantityToAdd > 0) {
       const addStockInfo = {
-        products: {
+        products: [{
           productId: this.selectedProduct.id,
           quantity: this.quantityToAdd
-        },
+        }],
         branchId: this.selectedProduct.branchId
       }
-      this.service.patchAddStockToProduct(addStockInfo).subscribe();
+      this.service.patchAddStockToProduct(addStockInfo).subscribe((data)=>
+        console.log(data)
+      );
     }
   }
 }

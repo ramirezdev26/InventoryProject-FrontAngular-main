@@ -10,8 +10,8 @@ export class AuthService {
 
   private tokenSubject = new BehaviorSubject<string | null>(null);
   token$ = this.tokenSubject.asObservable();
-  //authApi: string = `http://${window._env.AUTH_URI}`;
-  authApi: string = `http://localhost:8083`;
+  authApi: string = `http://${window._env.AUTH_URI}`;
+  //authApi: string = `http://localhost:8083`;
   jwtHelper = new JwtHelperService();
   currentBranchId: string = '';
   currentRolUser: string = '';

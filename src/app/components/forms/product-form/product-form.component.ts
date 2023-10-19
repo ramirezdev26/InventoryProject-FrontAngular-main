@@ -1,6 +1,5 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
 
 
@@ -15,8 +14,7 @@ export class ProductFormComponent implements OnInit{
   input = new FormControl('', [Validators.required]);
 
   constructor(private builder: FormBuilder,
-    private service: InventoryService,
-    private route: ActivatedRoute){}
+    private service: InventoryService){}
 
     branchId: string = '';
 

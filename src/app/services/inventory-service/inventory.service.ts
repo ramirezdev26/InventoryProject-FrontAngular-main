@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, single } from 'rxjs';
 import { Product } from 'src/app/models/product.model';
 import { AuthService } from '../auth-service/auth.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from 'src/app/models/user.model';
 import { Supplier } from 'src/app/models/supplier.model';
+import emailjs from '@emailjs/browser'
+
 
 interface WindowEnv {
   SERVICE_URI: string,
@@ -27,8 +29,11 @@ declare global {
 export class InventoryService {
   type: string = 'save';
   errorMsg: string = '';
-  api: string = `http://${window._env.QUERY_URI}`;
-  commandApi: string = `http://${window._env.SERVICE_URI}`;
+  // api: string = `http://${window._env.QUERY_URI}`;
+  // commandApi: string = `http://${window._env.SERVICE_URI}`;
+  api: string = `http://localhost:8081`;
+  commandApi: string = `http://localhost:8080`;
+
   emptyBody = {};
   token: any = this.authService.getToken();
   currentBranchId: string | null = this.authService.getCurrentBranchId();
@@ -108,5 +113,14 @@ export class InventoryService {
 
   patchChangeUserRole(userInfo: any){
     return this.http.patch(`${this.commandApi}/user/role`, userInfo)
+  }
+
+  sendEmail(email:string, supplier: Supplier){
+    console.log(email)
+    emailjs.init('rHRFxb5gLsHEiahRM')
+    emailjs.send("service_bwv4r8w","template_rgnpdq2",{
+      to_name: email,
+      message: `Name: ${supplier.name}, Email: ${supplier.email}, Contact number: ${supplier.number}, Payment Term: ${supplier.payment_term}`,
+      });
   }
 }

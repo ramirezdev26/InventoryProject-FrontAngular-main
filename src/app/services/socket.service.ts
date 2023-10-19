@@ -9,14 +9,18 @@ import { InvoiceEvent } from '../models/invoice.model';
 })
 export class SocketService {
 
+  //api_socket: string = `${window._env.SOCKET_URI}`;
+  api_socket: string = `localhost:8083`;
+
+
   constructor() { }
   connetToGeneralSpace():WebSocketSubject<EventBranch>{
-    return webSocket(`WS://${window._env.SOCKET_URI}/inventory/mainSpace`);
+    return webSocket(`WS://${this.api_socket}/inventory/mainSpace`);
   }
   connetToProductSpace(branchId: string):WebSocketSubject<Product>{
-    return webSocket(`WS://${window._env.SOCKET_URI}/inventory/${branchId}`);
+    return webSocket(`WS://${this.api_socket}/inventory/${branchId}`);
   }
   connectToInvoiceSpace(branchId: string):WebSocketSubject<InvoiceEvent>{
-    return webSocket(`WS://${window._env.SOCKET_URI}/inventory/invoice/${branchId}`)
+    return webSocket(`WS://${this.api_socket}/inventory/invoice/${branchId}`)
   }
 }

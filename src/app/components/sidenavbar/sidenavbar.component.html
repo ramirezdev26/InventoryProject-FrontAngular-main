@@ -13,6 +13,12 @@
             <a mat-list-item > <mat-icon>home_add</mat-icon> User Login </a>
             </mat-nav-list>
         </mat-expansion-panel>
+        <mat-expansion-panel *ngIf="currentUserRole !== ''">
+            <mat-expansion-panel-header ><a mat-list-item> <mat-icon>logout</mat-icon> Auth</a></mat-expansion-panel-header>
+            <mat-nav-list>
+            <a mat-list-item  (click)="logOut()"> <mat-icon>home_add</mat-icon> User Logout </a>
+            </mat-nav-list>
+        </mat-expansion-panel>
         <mat-expansion-panel *ngIf="currentUserRole === 'SUPER'">
             <mat-expansion-panel-header ><a mat-list-item routerLink="/branches"> <mat-icon>home</mat-icon> Branches</a></mat-expansion-panel-header>
             <mat-nav-list>

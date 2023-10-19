@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { ActivatedRoute} from '@angular/router';
 import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 
 @Component({
   selector: 'app-supplier-form',
@@ -15,7 +15,7 @@ export class SupplierFormComponent {
 
   constructor(private builder: FormBuilder,
     private service: InventoryService,
-    private route: ActivatedRoute){}
+    private authService: AuthService){}
 
     branchId: string = '';
 
@@ -36,9 +36,12 @@ export class SupplierFormComponent {
   }
 
   onSubmit(){
-    this.service.postNewSupplier(this.supplierForm.value).subscribe(
-      (answer) => console.log(answer)
-      );
+    this.service.postNewSupplier(this.supplierForm.value).subscribe((answer: any) =>{
+        console.log(answer)
+        
+        this.service.sendEmail(this.authService.getCurrentEmailUser(), this.supplierForm.value)
+      } 
+    );
   }
 
 }

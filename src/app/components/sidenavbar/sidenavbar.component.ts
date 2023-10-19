@@ -47,6 +47,9 @@ export class SidenavbarComponent {
 
   logOut(){
     this.authService.closeSession();
+    this.currentUserRole = '';
+    this.router.navigate(['login'])
+    
   }
 
 

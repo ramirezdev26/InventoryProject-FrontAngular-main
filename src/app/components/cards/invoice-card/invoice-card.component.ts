@@ -1,8 +1,5 @@
 import { Component, Input} from '@angular/core';
-import { Router } from '@angular/router';
 import { Invoice } from 'src/app/models/invoice.model';
-import { Product } from 'src/app/models/product.model';
-import { InventoryService } from 'src/app/services/inventory-service/inventory.service';
 
 
 @Component({
@@ -12,7 +9,7 @@ import { InventoryService } from 'src/app/services/inventory-service/inventory.s
 })
 export class InvoiceCardComponent {
 
-  constructor(private router: Router, private service: InventoryService) { }
+  constructor() { }
   @Input() invoice: Invoice = {
     id: '',
     products: [],
